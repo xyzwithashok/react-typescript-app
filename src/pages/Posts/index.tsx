@@ -8,7 +8,7 @@ import {
     Form,
     Spinner,
 } from 'react-bootstrap'
-import { PostsQueryProps, withPostsQuery } from '../../generated/graphql';
+import { PostsQueryProps, withPostsQuery } from './queries.generated';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { withApollo } from 'react-apollo';
 import compose from 'lodash.flowright';
@@ -63,7 +63,7 @@ class Posts extends React.Component<IPostsProps, IPostsState> {
                     ) : (
                             <div>
                                 {data!.posts!.edges.map(edge =>
-                                    <Col>
+                                    <Col key={edge?.node?.id}>
                                         <Card>
                                             <Card.Body>
                                                 <Card.Title>{edge?.node?.title}</Card.Title>
